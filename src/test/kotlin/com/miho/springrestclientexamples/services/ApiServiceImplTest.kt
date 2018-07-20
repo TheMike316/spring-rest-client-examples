@@ -19,6 +19,7 @@ class ApiServiceImplTest {
     fun testGetUsers() {
         val users = apiService.getUsers(3)
 
+        //for whatever reason, the api always returns one additional data record
         assertEquals(4, users.size)
     }
 
