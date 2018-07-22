@@ -24,7 +24,7 @@ class ApiServiceImpl(private val restTemplate: RestTemplate, @Value("\${api.url}
 
     override fun getUsers(limit: Mono<Int>) = WebClient.create(apiUrl)
             .get()
-            .uri { it.queryParam("limit", limit.block()).build() }
+            .uri { it.queryParam("limit", limit.block()).build() } //this creates issues since WebFlux doesn't allow you to block manually
             .accept(MediaType.APPLICATION_JSON)
             .exchange()
             .flatMap { it.bodyToMono(UserData::class.java) }
